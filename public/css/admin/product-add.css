@@ -72,7 +72,23 @@ form{
     font-family: 'Odibee Sans', cursive;
     font-weight: lighter;
     font-size: x-large;
+    padding: 30px;
 }
+@media all and (max-width:768px) {
+    
+
+    form {
+        border: 0px solid #fff;
+        border-radius: 10px;
+        align-items: center;
+        width: inherit;
+        font-family: 'Odibee Sans', cursive;
+        font-weight: 100;
+        font-size: larger;
+        padding: 10px;
+
+    }
+ }
 
  input {
     /* justify-content: center; */
@@ -104,8 +120,6 @@ form{
 output{
     width: 100%;
     height: fit-content;
-
-    /* display: none !important; */
     display: inline-flex!important;
     justify-content: flex-start;
     flex-shrink: 3;
@@ -113,9 +127,7 @@ output{
     position: relative;
     border-radius: 5px;
   }
-  /* #main div:nth-of-type(2) {
-    flex-shrink: 3;
-  } */
+
   output .image{
    height: 150px;
     border-radius: 5px;
@@ -146,3 +158,14 @@ output{
   output .span--hidden{
     visibility: hidden;
   }
+  .list {
+    display: none ;
+    /* position: absolute;
+    z-index:    1; */
+    width: 100%;
+    /* display: flex;
+    display: list-item; */
+ }
+.show {
+display: block;
+}

@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 let schema = mongoose.Schema;
 let userschema = new schema(
-  {
+  {product: [],
     name: {
       type: String,
       required: true,

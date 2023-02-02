@@ -47,17 +47,21 @@ const setCurrentPage = (pageNum) => {
   });
 };
 
+
 window.addEventListener("load", () => {
-  getPaginationNumbers();
-  setCurrentPage(1);
-
-  document.querySelectorAll(".pagination-number").forEach((button) => {
-    const pageIndex = Number(button.getAttribute("page-index"));
-
-    if (pageIndex) {
-      button.addEventListener("click", () => {
-        setCurrentPage(pageIndex);
-      });
-    }
-  });
+  initializePagination();
 });
+function initializePagination() {
+  getPaginationNumbers();
+setCurrentPage(1);
+
+document.querySelectorAll(".pagination-number").forEach((button) => {
+const pageIndex = Number(button.getAttribute("page-index"));
+
+if (pageIndex) {
+button.addEventListener("click", () => {
+setCurrentPage(pageIndex);
+});
+}
+});
+}

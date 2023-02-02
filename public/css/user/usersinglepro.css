@@ -109,7 +109,7 @@ nav h2 {
 .products{
    max-height:30rem !important;
     width: inherit;
-    overflow-y: scroll;
+    overflow-y: overlay;
     /* position: absolute !important; */
 
 }

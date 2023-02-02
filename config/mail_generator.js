@@ -1,4 +1,4 @@
-
+console.log('In The Mail Generator')
 
 const nodemailer = require("nodemailer");
 

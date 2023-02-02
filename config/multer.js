@@ -3,10 +3,12 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require('multer')
 const path=require('path');
+const sharp = require('sharp')
+
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-      console.log('in the multer')
-      console.log(file)
+      // console.log('in the multer')
+      // console.log(file)
       if (file.fieldname == 'instalfile') {
         cb(null, path.join(__dirname,'../public/upload/files'));
 
@@ -17,22 +19,27 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname,'../public/upload/Image'));
 
       }
-        // cb(null, path.join(__dirname,'../public/upload'));
-        // cb(null, 'upload')
+      
     },
     filename:(req,file,cb)=>{
-        // const name=file.originalname;
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-
         cb(null, file.originalname + '-' + uniqueSuffix)
-        // cb(null,name);
     }
 })
-// const upload=multer({storage:multer.memoryStorage()})
+// const multerFilter = (req, file, cb) => {
+// let result ;
+//  sharp(file)
+//  .resize({ width: 485, height: 485 })
+//  .then(res=>result=res)
+//  cb(null,result)
+// }
+const multerFilter = async(req, file, cb) => {
 
-// const imageName = uniqueSuffix + '-' + req.files.Images[i].originalname;
-
-const upload=multer({storage})
+  let filter = sharp(file).resize({ width: 485, height: 485 })
+    // .then(res => cb(null, res))
+    cb(null,filter)
+}
+const upload=multer({storage,fileFilter:multerFilter})
 
 
 // 

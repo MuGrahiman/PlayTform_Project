@@ -21,23 +21,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+    <!--for ajax  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <title>PlayTform | <%= title %></title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
 </head>
 
 <body>
-    <header>
-        <!-- align-items-center -->
+  <%- include('partials/navadmin') %>
+
+    <!-- <header>
         <nav class="navbar navbar-expand-lg px-5 align-text-center">
             <div class="container-fluid flex-lg-column">
                 <a class="navbar-brand d-flex align-items-center" href="/">
                     <img src="/public/img/log.png" alt="Logo" width="40" height="40"
                         class="d-inline-block align-text-top ">
-                    <h2 class="text-white ms-4 my-0"><b>PlayTform</b></h2>
+                    <h2 class="text-white ms-4 my-0">PlayTform</b></h2>
                 </a>
 
                 <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse"
@@ -62,56 +64,67 @@
             </div>
         </nav>
 
-    </header>
+    </header> -->
 
 
     <div class="container d-flex justify-content-center my-5">
-        <form action="/admin-product-add" method="post" class=" bg-transparent text-light col-8 p-5 tex"
-            enctype="multipart/form-data">
-            <h1 class="nav-link mb-5 text-center">Add-Product</h1>
-            
-            <div>
-                <label for="Image" class="form-label"><b>Upload Your Banner</b></label><br>
+        <form action="/admin-product-add" method="post" class=" bg-transparent text-light col-md-8  "
+            enctype="multipart/form-data" id="form">
+            <h1 class="nav-link my-5 text-center">Add-Product</h1>
+
+            <div id="forImage">
+                <label for="Image" class="form-label">Upload Your Icon</b></label><br>
                 <input type="file" id="Image" class="form-control" name="Image" value="" required>
-            </div>
-            <div>
-                <label for="Images" class="form-label"><b>Upload Your Images</b></label><br>
-                <input type="file" id="Images" class="form-control" name="Images" value="" multiple required>
-                <output id="output" class="text-light"></output>
+                <small class="fw-lighter text-danger text-center fst-italic" id="imgspan"></small>
 
             </div>
-              <div>
-                <label for="instalfile" class="form-label"><b>Upload installation file</b></label><br>
-                <input type="file" id="instalfile" class="form-control" name="instalfile" value="" >
-             </div>
-            <div class="">
-                <label for="name" class="form-label"><b>Title</b> </label><br>
-                <input type="text" name="name" class="form-control" id="name " placeholder="Enter The Title" required
-                    value="Gunner">
-            </div>
-            <div class="">
-                <label for="developer" class="form-label"><b>developer</b> </label><br>
-                <input type="text" name="developer" class="form-control" id="developer "
-                    placeholder="Enter The Name Of Developer" required value="mujeeb">
-            </div>
-            <div class="">
-                <label for="version" class="form-label"><b>version</b> </label><br>
-                <input type="text" name="version" class="form-control" id="version " placeholder="Enter The version" required
-                    value="3.2.1">
-            </div>
-            <div class="">
-                <label for="cost" class="form-label"><b>cost</b> </label>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping">$</span>
+            <div id="forImages">
+                <label for="Images" class="form-label">Upload Your Sub-Images</b></label><br>
+                <input type="file" id="Images" class="form-control " name="Images" value="" multiple required>
+                <p><small class="fw-lighter text-danger text-center fst-italic" id="imgsspan"></small></p>
+                <!-- <output id="output" class="text-light"></output> -->
 
-                    <input type="number" name="cost" class="form-control" id="cost " placeholder="Enter The cost"
-                        required value="445">
+            </div>
+            <div id="forInatal">
+                <label for="instalfile" class="form-label">Upload Installation File</b></label><br>
+                <input type="file" id="instalfile" class="form-control" name="instalfile"
+                    placeholder="Upload The Zip File" value="" required>
+                <p><small class="fw-lighter text-danger text-center fst-italic" id="instspan"></small></p>
+
+            </div>
+            <div id="forTitle">
+                <label for="name" class="form-label">Title</label><br>
+                <input type="text" name="title" class="form-control" id="title " placeholder="Enter The Title" required>
+            </div>
+            <div id="forDeveloper">
+                <label for="developer" class="form-label">Developer</label><br>
+                <input type="text" name="developer" class="form-control " id="developer "
+                    placeholder="Enter The Name Of Developer" required >
+            </div>
+            <div class="" id="forVersion">
+                <label for="version" class="form-label">Version</label><br>
+                <input type="text" name="version" class="form-control " id="version " placeholder="Enter The version"
+                    required >
+            </div>
+            <div class="" id="forRelease">
+                <label for="release" class="form-label">Release Date</label><br>
+                <input type="date" name="release" class="form-control " id="release " placeholder="Enter The version"
+                    required >
+            </div>
+            <div class="" id="forCost">
+                <label for="cost" class="form-label">Cost</label>
+                <div class="input-group ">
+                    <span class="dollar text-dark float-end input-group-text">&dollar;</span>
+
+                    <input type="number" name="cost" class="form-control " id="cost " placeholder="Enter The cost"
+                        required >
                 </div>
             </div>
-            <div class="">
-                <label for="category" class="form-label" ><b>category</b> </label><br>
+            <div class="" id="forCategory">
+                <label for="category" class="form-label " required>Category</label><br>
+                <small id="catespan" class="fw-lighter text-danger text-center fst-italic"></small>
 
-                <div class=" d-flex justify-content-evenly ">
+                <div class=" d-md-flex justify-content-evenly ">
                     <div class="form-check form-check-inline  d-flex gap-2">
                         <input class="form-check-input" name="category" type="checkbox" id="inlineCheckbox1" value="ps">
                         <label class="form-check-label" for="inlineCheckbox1">ps</label>
@@ -127,42 +140,49 @@
 
                 </div>
             </div>
-            <div class="mb-5">
-                <label for="genres" class="form-label"><b>Genres</b> </label><br>
-                <div class="input-group ">
-                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                    <!-- <select class="form-select" id="" required name="genres" id="genres" multiple> -->
-                        <select class="form-select " name="genres" id="countries" multiple required>
+            <div class="mb-5 d-flex flex-column" id="forGenres">
+                <label for="genres" class="form-label">Genres </label>
+                <small id="span" class="fw-lighter text-danger text-center fst-italic"></small>
+                <div class="multi-selector p-0 ">
+                    <div class="select-field input-group bg-light text-center  border solid rounded ">
+                        <span class="form-control"> ------select the genres---------</span>
+                        <span class="down-arrow text-dark float-end input-group-text ">&blacktriangledown;</span>
+                    </div>
+                    <div class="list bg- shadow m-0">
+                        <div class="d-flex flex-column">
+                            <% category.forEach(category=>{ %>
 
-                        <option>--Select--</option>
-                        <!-- <option type="checkbox" id="inlineCheckbox3">
-                            <label for="inlineCheckbox3">vr </label>
-                        </option> -->
+                                <div class="input-group m-2 ">
+
+                                    <input type="checkbox" name="genres" id="<%=category.title%>" class="col-2"
+                                        value=" <%=category.title%>">
+                                    <label class="col-10" for="<%=category.title%>">
+                                        <%=category.title%>
+                                    </label>
+                                </div>
+                                <%})%>
 
 
-                        <% category.forEach(category=>{ %>
-
-                            <option>
-                                <%=category.title%>
-                            </option>
-                            <%})%>
-
-                    </select>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-            <div class="form-floating mb-5">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                <label for="floatingTextarea2 text-white">Comments</label>
-              </div>
+
+
+
+            <div class=" mb-5" id="forDescription">
+                <label for="description" class="floatingTextarea2">description</label><br>
+
+                <textarea class="form-control" name="about" placeholder="About Your Product" id="description"
+                    style="height: 100px"></textarea>
+            </div>
             <% if(locals.err) {%>
-                <p class="text-danger  ">
-                    <%= locals.err %>
-                </p>
+                    <script>alert("<%= locals.err %>")</script>
                 <%}%>
 
-                    <div class=" text-center d-grid">
-                        <button type="submit" class="btn btn-sub btn-lg  text-light ">submit</button>
+                    <div class=" text-center my-5 d-grid">
+                        <button type="submit" class="btn btn-sub btn-lg  text-light">submit</button>
                     </div>
         </form>
     </div>
@@ -170,42 +190,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-        <script>
-            new MultiSelectTag('countries', {
-                rounded: true,    // default true
-                shadow: true      // default false
-            })</script>
     <script>
+        // ----------------------selector-----------------
+        document.querySelector('.select-field').addEventListener('click', () => {
+            document.querySelector('.list').classList.toggle('show')
+
+        })
+
+
+        //  -----------------------image prereview----------------
         const output = document.getElementById("output")
-        const input = document.getElementById("Images")
-        const men = document.getElementById("men")
+        const Images = document.getElementById("Images")
         const image = document.getElementsByClassName("image")
         let imagesArray = [];
 
-        const fileInput = document.getElementById('instalfile');
-        const reader = new FileReader();
+        Images.addEventListener("change", () => {
 
-reader.onload = function(e) {
-  fileInput.value = e.target.result;
-};
+            imagesArray.length = 0;
 
-reader.readAsDataURL(file);
-
-        input.addEventListener("change", () => {
-
-            //   if (  $('.image').children('img') == 0) {
-            //     document.getElementById("men").style.display='none'
-
-            //   } else {
-            //     document.getElementById("men").style.display='block'
-
-            //   }
-            const files = input.files
-            const value = 0
+            const files = Images.files
+            // const value = 0
             for (let i = 0; i < files.length; i++) {
                 imagesArray.push(files[i])
             }
-            displayImages()
+            // displayImages()
         });
         function displayImages() {
             let images = ""
@@ -219,9 +227,161 @@ reader.readAsDataURL(file);
 
         };
         function deleteImage(index) {
-            imagesArray.splice(index, 1)
+            imagesArray.reduce(index, 1)
+
             displayImages()
         };
+
+
+    
+
+    </script>
+    <script>
+window.onload = ()=>{
+$(document).ready(function() {
+    $(title).focus();
+});
+}
+        // -----------------form submission --------------
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const Image = document.getElementById('Image')
+            const Images = document.getElementById('Images')
+            const instalfile = document.getElementById('instalfile')
+            const genres = document.querySelector('#forGenres');
+            const category = document.querySelector('#forCategory input[type="checkbox"]');
+            const title = $('#title').val();
+            const filePath = Image.value
+            const allowedExtension = /(\.jpg|\.jpeg|\.png)$/i;
+
+            function ImageValid() {
+                if (!allowedExtension.exec(filePath)) {
+                    console.log('failed')
+                    $('#Image').f.remove(' border-success is-valid').addClass(' border-danger is-invalid');
+                    document.getElementById('imgspan').innerHTML='upload jpg png jpeg'
+                    // Image.setCustomValidity('upload jpg png jpeg')
+                    return false
+                } else {
+                    $('#Image').removeClass(' border-danger is-invalid').addClass(' border-success is-valid');
+                    document.getElementById('imgspan').innerHTML=''
+
+                    console.log('success')
+                    return true
+                }
+                return true
+            }
+
+            function instalfileValid() {
+                const instalfilePath = $('#instalfile').val();
+                const instalfileExtension = /(\.zip|\.)$/i;
+                if (!instalfileExtension.exec(instalfilePath)) {
+                    console.log('failed')
+                    $('#instalfile').remove(' border-success is-valid').addClass(' border-danger is-invalid');
+                    document.getElementById('instspan').innerHTML='upload the zip file'
+                    // instalfile.setCustomValidity('upload zip file')
+                    return false
+                } else {
+                    $('#instalfile').removeClass(' border-danger is-invalid').addClass(' border-success is-valid');
+                    document.getElementById('instspan').innerHTML=''
+
+                    return true
+                    console.log('success')
+                }
+                return true
+            }
+            function ImagesValid() {
+                let imgarry
+                for (let i = 0; i < imagesArray.length; i++) {
+                    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                    const filePat = imagesArray[i].name
+
+                    function getExtension(filename) {
+                        var parts = filename.split('.');
+                        return parts[parts.length - 1];
+                    }
+
+                    if (!allowedExtensions.exec(filePat)) {
+                        imgarry = true
+
+                        break
+                    }
+                }
+
+                if (imgarry == true || imagesArray.length == 0) {
+                    $('#Images').remove(' border-success is-valid').addClass(' border-danger is-invalid');
+                    document.getElementById('imgsspan').innerHTML='upload jpg png jpeg'
+                    return false
+                } else {
+
+                    $('#Images').removeClass(' border-danger is-invalid').addClass(' border-success is-valid');
+                    document.getElementById('imgsspan').innerHTML=''
+
+                    return true
+                }
+                return true
+            }
+
+            function cateValid() {
+                const forCategoryChecked = $('#forCategory input[type="checkbox"]')
+                let checked
+                for (var i = 0; i < forCategoryChecked.length; i++) {
+                    if (forCategoryChecked[i].checked) {
+                        checked = true;
+
+                        break;
+                    }
+                }
+                if (checked == true) {
+                    document.getElementById('catespan').innerHTML = ''
+                    return true
+                } else {
+                    document.getElementById('catespan').innerHTML = 'Please select the category'
+
+                    return false
+                }
+                return true
+            }
+
+            function genrValid() {
+                const forGenresChecked = $('#forGenres input[type="checkbox"]')
+                let checked
+                // alert(forGenresChecked.length)
+                for (let i = 0; i < forGenresChecked.length; i++) {
+                    if (forGenresChecked[i].checked) {
+                        checked = true;
+                        break;
+                    }
+                }
+                if (checked == true) {
+                    // alert(checked)
+                    document.getElementById('span').innerHTML = ''
+                    return true
+                } else {
+                    // alert(checked)
+                    document.getElementById('span').innerHTML = 'Please select the genres'
+
+                    return false
+                }
+                return true
+            }
+             const ImageVal = ImageValid(), ImagesVal = ImagesValid(), instalfileVal = instalfileValid(), cateVal = cateValid(), genrVal = genrValid()
+           if (ImageVal&&ImagesVal&&instalfileVal&&cateVal&&genrVal) {
+            $('#form').submit();
+           } 
+        })
+        let karton = document.querySelectorAll('.likarton');
+
+for (let i = 0; i < karton.length; i++) {
+  karton[i].addEventListener("click", (event) => {
+    let div = document.querySelector('.kartondiv');
+
+    if (div.classList.contains('hidden')) {
+      div.classList.remove('hidden');
+    } else {
+      div.classList.add('hidden');
+    }
+  });
+}
     </script>
 </body>
 

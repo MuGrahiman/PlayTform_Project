@@ -3,11 +3,13 @@ const morgan = require('morgan');
 const mongoose = require('mongoose')
 const path = require('path');
 const route = require('./routes/route')
+const LogVal = require('../project/utilities/LogVal')
 let bodyparser = require("body-parser");
 let cookieparser = require("cookie-parser");
 const session = require('express-session')
 const nodemailer = require('nodemailer')
 const cloudinary = require ('./config/cloudinary')
+const paypal = require ('./config/paypal')
   require('dotenv').config()
 require("./config/connection")
 const multer = require("multer");
